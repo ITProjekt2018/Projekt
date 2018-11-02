@@ -17,6 +17,11 @@ public class Screen extends Canvas{
 	public JButton getBtnEnde() {
 		return buttonEnde;
 	}
+	
+	public JButton getBtnNeuesSpiel() {
+		return btnNeuesSpiel;
+	}
+	
 	public Screen(Hintergrund h, KeyEvt e){
 		
 		hintergrund = h;
@@ -35,14 +40,27 @@ public class Screen extends Canvas{
 	    buttonEnde.setIcon((Icon) imgEnde);
 	    buttonEnde.setEnabled(false);
 	    buttonEnde.setVisible(false);
+	    buttonEnde.setFocusable(false);
 	    
+	    btnNeuesSpiel.setBounds( Toolkit.getDefaultToolkit().getScreenSize().width/2-100, Toolkit.getDefaultToolkit().getScreenSize().height-600,200,50);
+	    btnNeuesSpiel.setMargin(new Insets(2,2,2,2));
+	    btnNeuesSpiel.addActionListener(new ActionListener() {
+	    	public void actionPerformed(ActionEvent e) {
+	    		hintergrund.spielEnde();
+	    		hintergrund.neueRunde();
+	    	}
+	    });
+	    Icon imgNeuesSpiel =  new ImageIcon(this.getClass().getResource("btnNeueRunde.png"));
+	    btnNeuesSpiel.setIcon((Icon) imgNeuesSpiel);
+	    btnNeuesSpiel.setEnabled(false);
+	    btnNeuesSpiel.setVisible(false);
+	    btnNeuesSpiel.setFocusable(false);
 	    
-	    
+	    frame.add(btnNeuesSpiel);
 	    frame.add(buttonEnde);
 	    frame.setLayout(new BorderLayout());
 	    frame.add(this,BorderLayout.CENTER);
-	    this.addKeyListener(e);
-	    buttonEnde.setFocusable(false);
+	    this.addKeyListener(e);	    
 	    frame.setUndecorated(true);
 	    frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 	    frame.setUndecorated(true);

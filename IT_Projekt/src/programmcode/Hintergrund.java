@@ -66,7 +66,7 @@ public class Hintergrund implements Runnable{
 	  System.out.println(TPS);
 	  erster = true;
   }
- private void spielEnde() {
+ public void spielEnde() {
 	 for(int i = 0; i<10; i++) {
 		 for(int j = 0; j<10; j++) {
 			 spielfeld[i][j]=null;
@@ -77,7 +77,7 @@ public class Hintergrund implements Runnable{
 	 System.out.println("Spielende");
  }
  
- private void neueRunde() {
+ public void neueRunde() {
 	 
 	 for(int i = 0; i<10; i++) {
 		 if(spielfeld[9][i]!=null) {
@@ -218,6 +218,7 @@ public class Hintergrund implements Runnable{
   
   public void render() {
     JButton btnEnde = screen.getBtnEnde();
+    JButton btnNeuesSpiel = screen.getBtnNeuesSpiel();
 	BufferStrategy bs = screen.getBufferStrategy();
     if(bs == null){
       screen.createBufferStrategy(3);
@@ -229,6 +230,8 @@ public class Hintergrund implements Runnable{
     if(!pause) {
     btnEnde.setEnabled(false);
     btnEnde.setVisible(false);
+    btnNeuesSpiel.setEnabled(false);
+    btnNeuesSpiel.setVisible(false);
     for(int i = 0; i < rechteck.size(); i++){
     	g.drawRect((int)rechteck.get(i).getX(),(int)rechteck.get(i).getY(),rechteck.get(i).getWidth(),rechteck.get(i).getHeight());
     	g.drawString(""+rechteck.get(i).getLeben(), (int)rechteck.get(i).getX()+17, (int)rechteck.get(i).getY()+29);
@@ -261,12 +264,16 @@ public class Hintergrund implements Runnable{
     }else {
     	btnEnde.setEnabled(true);
     	btnEnde.setVisible(true);
+    	btnNeuesSpiel.setEnabled(true);
+    	btnNeuesSpiel.setVisible(true);
     }
     g.setColor(Color.blue);
     g.dispose();
     bs.show();
     
   }
+  
+
   
   public void tick() {
 	  if(!pause) {
