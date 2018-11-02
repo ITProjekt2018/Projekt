@@ -46,8 +46,7 @@ public class Screen extends Canvas{
 	    btnNeuesSpiel.setMargin(new Insets(2,2,2,2));
 	    btnNeuesSpiel.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent e) {
-	    		hintergrund.spielEnde();
-	    		hintergrund.neueRunde();
+	    		hintergrund.neuesSpiel();
 	    	}
 	    });
 	    Icon imgNeuesSpiel =  new ImageIcon(this.getClass().getResource("btnNeueRunde.png"));

@@ -77,6 +77,26 @@ public class Hintergrund implements Runnable{
 	 System.out.println("Spielende");
  }
  
+ public void neuesSpiel() {
+	 
+	 for(int i = 0; i<kreis.size(); i++) {
+		 kreis.remove(i);
+	 }
+	 for(int i = 0; i<10; i++) {
+		 for(int j = 0; j<10; j++) {
+			 spielfeld[i][j]=null;
+		 }
+	 }
+	 if(!laeuft) {
+		 neueRunde();
+		 System.out.println("neue Runde");
+		 }
+	 kreise = 1;
+	 laeuft = false;
+	 
+	 
+ }
+ 
  public void neueRunde() {
 	 
 	 for(int i = 0; i<10; i++) {
