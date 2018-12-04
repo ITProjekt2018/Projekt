@@ -6,6 +6,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 
 import java.awt.image.BufferStrategy;
+import java.io.IOException;
 import java.awt.*;
 /**
   *
@@ -37,10 +38,13 @@ public class Hintergrund implements Runnable{
   private double nsPerTick = 1000000000D/TPS;
   private boolean neueRunde = false;
   private boolean pause = false;
-  	
+  private SchreibenLesen sl = new SchreibenLesen();;
+  
+  
   public Hintergrund() {	  
 	  keyevt = new KeyEvt(this);
 	  screen = new Screen(this, keyevt);
+	  
   }
   
   public synchronized void start(){
@@ -125,6 +129,13 @@ public class Hintergrund implements Runnable{
 			 i--;
 		 }
 	 }
+	 sl.schreiben(spielfeld, 10, 3);
+	  try {
+		sl.lesen(3);
+	} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
  }
   
   public void setLaeuft() {
