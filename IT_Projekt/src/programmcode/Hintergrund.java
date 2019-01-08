@@ -136,6 +136,7 @@ public class Hintergrund implements Runnable{
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
+	
  }
   
   public void setLaeuft() {
@@ -263,6 +264,7 @@ public class Hintergrund implements Runnable{
     btnEnde.setVisible(false);
     btnNeuesSpiel.setEnabled(false);
     btnNeuesSpiel.setVisible(false);
+    g.setColor(new Color(100,90,200));
     for(int i = 0; i < rechteck.size(); i++){
     	g.drawRect((int)rechteck.get(i).getX(),(int)rechteck.get(i).getY(),rechteck.get(i).getWidth(),rechteck.get(i).getHeight());
     	g.drawString(""+rechteck.get(i).getLeben(), (int)rechteck.get(i).getX()+17, (int)rechteck.get(i).getY()+29);

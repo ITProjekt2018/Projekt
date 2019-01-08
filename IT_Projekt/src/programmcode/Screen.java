@@ -29,6 +29,7 @@ public class Screen extends Canvas{
 	   
 	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    frame.setSize(screenSize);
+	    this.setBackground(new Color(0,0,100));
 	    buttonEnde.setBounds( Toolkit.getDefaultToolkit().getScreenSize().width/2-100, Toolkit.getDefaultToolkit().getScreenSize().height-500,200,50);
 	    buttonEnde.setMargin(new Insets(2,2,2,2));
 	    buttonEnde.addActionListener(new ActionListener() {
@@ -36,7 +37,7 @@ public class Screen extends Canvas{
 	    		System.exit(0);
 	    	}
 	    });
-	    Icon imgEnde =  new ImageIcon(this.getClass().getResource("btnEnde.png"));
+	    Icon imgEnde =  new ImageIcon(this.getClass().getResource("BTN1.png"));
 	    buttonEnde.setIcon((Icon) imgEnde);
 	    buttonEnde.setEnabled(false);
 	    buttonEnde.setVisible(false);
@@ -49,7 +50,7 @@ public class Screen extends Canvas{
 	    		hintergrund.neuesSpiel();
 	    	}
 	    });
-	    Icon imgNeuesSpiel =  new ImageIcon(this.getClass().getResource("btnNeueRunde.png"));
+	    Icon imgNeuesSpiel =  new ImageIcon(this.getClass().getResource("BTN2.png"));
 	    btnNeuesSpiel.setIcon((Icon) imgNeuesSpiel);
 	    btnNeuesSpiel.setEnabled(false);
 	    btnNeuesSpiel.setVisible(false);

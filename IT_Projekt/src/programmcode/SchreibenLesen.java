@@ -75,9 +75,22 @@ public class SchreibenLesen {
 		for(int c; (c = reader.read() ) != -1;)
 		test = test + (char) c;
 		String[] angaben = test.split(",");
+		for(int i = 0; i<angaben.length; i++) {
+			//System.out.println(angaben[i]);
+		}
 		for(int i = 0; i< angaben.length; i++){
-			int leben = Integer.parseInt(angaben[i]);
-			spielfeld[(int)i%10][(int)i/10] = new Rechteck(100*(i%10)+(int)(Toolkit.getDefaultToolkit().getScreenSize().getWidth()/2-500),10,50,50,leben); 
+			int leben = 0;
+			try {
+				leben = Integer.parseInt(angaben[i]);	
+				System.out.println(leben);
+				spielfeld[(int)i%10][(int)i/10] = new Rechteck(100*(i%10)+(int)(Toolkit.getDefaultToolkit().getScreenSize().getWidth()/2-500),10,50,50,leben); 
+				
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+				
+			
 		}
 		System.out.println(test);
 		reader.close();
