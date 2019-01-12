@@ -39,7 +39,7 @@ public class Hintergrund implements Runnable{
   private boolean neueRunde = false;
   private boolean pause = false;
   private SchreibenLesen sl = new SchreibenLesen();;
-  
+  private boolean speichern = false;
   
   public Hintergrund() {	  
 	  keyevt = new KeyEvt(this);
@@ -245,12 +245,24 @@ public class Hintergrund implements Runnable{
   }
   
   public void pause() {
-	  pause = !pause;
+	  if(!speichern) {
+		  pause = !pause;  
+	  }else {
+		  speichern = false;
+	  }
+	  
+  }
+  
+  
+  
+  public void setSpeichern() {
+	  speichern = true;
   }
   
   public void render() {
     JButton btnEnde = screen.getBtnEnde();
     JButton btnNeuesSpiel = screen.getBtnNeuesSpiel();
+    JButton btnSpeichern = screen.getBtnSpeichern();
 	BufferStrategy bs = screen.getBufferStrategy();
     if(bs == null){
       screen.createBufferStrategy(3);
@@ -264,7 +276,9 @@ public class Hintergrund implements Runnable{
     btnEnde.setVisible(false);
     btnNeuesSpiel.setEnabled(false);
     btnNeuesSpiel.setVisible(false);
-    g.setColor(new Color(100,90,200));
+    btnSpeichern.setVisible(false);
+    btnSpeichern.setEnabled(false);
+    //g.setColor(new Color(100,90,200));
     for(int i = 0; i < rechteck.size(); i++){
     	g.drawRect((int)rechteck.get(i).getX(),(int)rechteck.get(i).getY(),rechteck.get(i).getWidth(),rechteck.get(i).getHeight());
     	g.drawString(""+rechteck.get(i).getLeben(), (int)rechteck.get(i).getX()+17, (int)rechteck.get(i).getY()+29);
@@ -299,6 +313,8 @@ public class Hintergrund implements Runnable{
     	btnEnde.setVisible(true);
     	btnNeuesSpiel.setEnabled(true);
     	btnNeuesSpiel.setVisible(true);
+    	btnSpeichern.setVisible(true);
+    	btnSpeichern.setEnabled(true);
     }
     g.setColor(Color.blue);
     g.dispose();
