@@ -24,6 +24,11 @@ public class SchreibenLesen {
 	private Rechteck[][] spielfeld = new Rechteck[10][10];
 	private int kreise;
 	private int spiel;
+	private Steuerung steuerung;
+	
+	public SchreibenLesen(Steuerung pS) {
+		steuerung = pS;
+	}
 	
 	public void schreiben(Rechteck[][] pSpielfeld, int pKreise, int pSpiel) {
 		spielfeld = pSpielfeld;
@@ -44,7 +49,8 @@ public class SchreibenLesen {
 			for(int j = 0; j<10; j++) {
 				if(spielfeld[i][j]!=null) {
 					for(int k = 0; k < Integer.toString(spielfeld[i][j].getLeben()).length(); k++) {
-						writer.write(Integer.toString(spielfeld[i][j].getLeben()).charAt(k));
+						int zahl = Integer.toString(spielfeld[i][j].getLeben()).charAt(k);
+						writer.write(zahl);
 					}
 					
 				}else {
@@ -67,32 +73,39 @@ public class SchreibenLesen {
 			}
 		}
 	}
-	public void lesen(int spiel) throws IOException {
+	public Rechteck[][] lesen(int spiel) throws IOException {
 		spielfeld = new Rechteck[10][10];
 		
 		Reader reader = new FileReader("spielstand" + spiel + ".tmp");
 		String test = "";
-		for(int c; (c = reader.read() ) != -1;)
-		test = test + (char) c;
+		for(int c; (c = reader.read() ) != -1;) {
+		if(c!=''){
+			test = test + (char) c;	
+		}
+	}
 		String[] angaben = test.split(",");
 		for(int i = 0; i<angaben.length; i++) {
 			//System.out.println(angaben[i]);
 		}
-		for(int i = 0; i< angaben.length; i++){
+		for(int i = 0; i< angaben.length-2; i++){
 			int leben = 0;
 			try {
 				leben = Integer.parseInt(angaben[i]);	
-				System.out.println(leben);
-				spielfeld[(int)i%10][(int)i/10] = new Rechteck(100*(i%10)+(int)(Toolkit.getDefaultToolkit().getScreenSize().getWidth()/2-500),10,50,50,leben); 
 				
+				System.out.println(leben);
+				if(leben!=0) {
+				spielfeld[(int)i%10][(int)i/10] = new Rechteck(100*(i%10)+(int)(Toolkit.getDefaultToolkit().getScreenSize().getWidth()/2-500),10,50,50,leben); 
+			}
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
-				
+			}	
 			
 		}
+		steuerung.setKreise( Integer.parseInt(angaben[angaben.length-1]));
 		System.out.println(test);
 		reader.close();
+		
+		return spielfeld;
 	}
 }

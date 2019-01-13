@@ -5,26 +5,26 @@ import java.awt.event.KeyEvent;
 
 public class KeyEvt implements KeyListener{
 	
-	private Hintergrund hintergrund;
-	public KeyEvt(Hintergrund pH) {
-		hintergrund = pH;
+	private Steuerung steuerung;
+	public KeyEvt(Steuerung pS) {
+		steuerung = pS;
 	}
 	@Override
 	public void keyPressed(KeyEvent e) {
 		if(e.getKeyCode() == KeyEvent.VK_RIGHT) {
-			hintergrund.setRechts();
-			hintergrund.rechts();
+			steuerung.setRechts();
+			steuerung.rechts();
 		}
 		if(e.getKeyCode() == KeyEvent.VK_LEFT) {
-			hintergrund.setLinks();
-			hintergrund.links();
+			steuerung.setLinks();
+			steuerung.links();
 		}
 		if(e.getKeyCode() == KeyEvent.VK_SPACE) {
-			hintergrund.setSpace();
-			hintergrund.setLaeuft();
+			steuerung.setSpace();
+			steuerung.setLaeuft();
 		}
 		if(e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-			hintergrund.pause();
+			steuerung.pause();
 		}
 		
 	}
@@ -32,13 +32,13 @@ public class KeyEvt implements KeyListener{
 	@Override
 	public void keyReleased(KeyEvent e) {
 		if(e.getKeyCode() == KeyEvent.VK_RIGHT) {
-			hintergrund.delRechts();
+			steuerung.delRechts();
 		}
 		if(e.getKeyCode() == KeyEvent.VK_LEFT) {
-			hintergrund.delLinks();
+			steuerung.delLinks();
 		}
 		if(e.getKeyCode() == KeyEvent.VK_SPACE) {
-			hintergrund.delSpace();
+			steuerung.delSpace();
 		}
 		
 	}
@@ -46,7 +46,7 @@ public class KeyEvt implements KeyListener{
 	@Override
 	public void keyTyped(KeyEvent e) {
 		if(e.getKeyCode() == KeyEvent.VK_0) {
-			hintergrund.tickMalZehn();
+			steuerung.tickMalZehn();
 			System.out.println("Test");
 		}
 		

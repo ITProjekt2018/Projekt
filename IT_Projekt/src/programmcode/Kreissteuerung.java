@@ -7,15 +7,15 @@ public class Kreissteuerung {
 	private Rechteck rechteck;
 	private double x,y;
 	private boolean istDrin = true;
-	private Hintergrund hintergrund;
+	private Steuerung steuerung;
 	private long delay = 0;
 	private boolean anderesRechteck;
 	private double pPX,pPY;
 	private boolean move = false;
 	
-	public Kreissteuerung( Kreis pKreis, Hintergrund pHintergrund ) {
+	public Kreissteuerung( Kreis pKreis, Steuerung pSteuerung ) {
 	kreis = pKreis;
-	hintergrund = pHintergrund;
+	steuerung = pSteuerung;
 	}
 	public long getDelay() {
 		return delay;
